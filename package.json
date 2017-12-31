@@ -1,0 +1,20 @@
+{
+  "name": "ako_chan",
+  "version": "1.0.0",
+  "description": "She's /axo/'s official waifu",
+  "main": "heart.js",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "http": "0.0.0",
+    "opusscript": "0.0.3",
+    "request": "^2.81.0",
+    "xml-js": "^1.3.2",
+    "ytdl-core": "^0.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

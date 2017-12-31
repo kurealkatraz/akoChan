@@ -1,0 +1,7 @@
+{
+	"mal" : {
+		"psw"	: "secret",
+		"usr"	: "yourlogin"
+	},
+	"discordToken" : "yourDiscordBotToken"
+}
