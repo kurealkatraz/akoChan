@@ -9,6 +9,7 @@ const	request			= require('request');
 const	discord			= require('discord.js');
 const	client			= new discord.Client();
 const	broadcast		= client.createVoiceBroadcast();
+var		boostMeter		= 0;
 let		malCreditencial;
 let		config; 
 
@@ -26,16 +27,20 @@ fs.readFile('config.json', (err, content) => {
 	}
 });
 
+setInterval(function() {
+	boostMeter = boostMeter > 0 ? boostMeter - 1 : boostMeter;
+}, 10000);
+
 const instructionKeyWordsDictionary = {
-	generateRandomNumber : {
-		name					: 'generateRandomNunber',
-		primaryKeyWords  		: ['random', 'generate'],
+	speedBoost : {
+		name					: 'Induce speed boosting mechanics',
+		primaryKeyWords			: ['speed', 'boost', 'fast', 'faster', 'phast', 'phastestest', 'sanic', 'sonic', 'bass'],
 		secondaryKeyWords		: [],
-		contextPointers			: ['from', 'to'],
+		contextPointers			: null,
 		dataExtractionFuntion	: null,
 		treatmentFunction		: null,
-		responseBuildingFunc	: null,
-		context					: 'rng'
+		responseBuildingFunc	: formulateAnswerToSpeedBoosting,
+		context					: 'speed'
 	},
 	searchWikipedia : {
 		name					: 'SearchInWikipedia',
@@ -194,6 +199,34 @@ client.on('message', (message) => {
 	if (triggerPart === '.ako?')
 		akoLexorInit(message.content, message);
 });
+
+function formulateAnswerToSpeedBoosting(tryArr, instruction) {
+	var bImgs	= [
+		'https://i.imgur.com/eKmmyv1.mp4',
+		'https://i.imgur.com/10P1alj.mp4',
+		'https://i.imgur.com/EZQoAOA.mp4'
+	]
+	var img = boostMeter > bImgs.length - 1 ? bImgs[bImgs.length - 1] : bImgs[boostMeter]
+	var speed	= '*spee';
+	var boost	= '**:b:oo';
+	var boostNb	= minMaxNum(0, 9);
+	var speedNb	= minMaxNum(0, 9);
+	
+	while (boostNb > 0)
+	{
+		boost += 'o';
+		boostNb--;
+	}
+	while (speedNb > 0)
+	{
+		speed += 'e';
+		speedNb--;
+	}
+	boostMeter++;
+	speed += 'd*\n';
+	boost += 'st**\n';
+	return ('Boost meter status : ' + boostMeter + '\n\n' + speed + boost + img)
+}
 
 function akoLexorInit(messageContent, messageObj) {
 	const	msg = messageContent.substring(5);
